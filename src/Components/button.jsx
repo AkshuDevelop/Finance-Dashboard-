@@ -2,20 +2,22 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Buttons({ to, value, icon }) {
-  const baseClasses =
-    "w-full flex h-15 items-center  justify-start gap-2 px-4 py-2 text-sm font-medium transition rounded-2xl bg-transparent text-left";
-  const activeClasses = " !bg-black text-[#E3DCD4] border-2 border-black ";
-  const inactiveClasses = "text-black bg-transparent";
+  const base =
+    "flex items-center gap-3 px-3 py-2 rounded-xl text-sm transition-all";
+
+  const active = "bg-zinc-200 text-zinc-900 font-medium";
+
+  const inactive = "text-zinc-500 hover:bg-zinc-200 hover:text-zinc-800";
 
   return (
     <NavLink
       to={to}
-      className={({ isActive }) =>
-        `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`
-      }
+      className={({ isActive }) => `${base} ${isActive ? active : inactive}`}
     >
-      {icon && <span className="flex items-center">{icon}</span>}
-      <span className="text-left">{value}</span>
+      {/* icon */}
+      <img src={icon} alt="" className="w-4 h-4 opacity-70" />
+
+      {value}
     </NavLink>
   );
 }

@@ -8,7 +8,7 @@ import Insights from "./insights/insights";
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="bg-zinc-200 min-h-screen flex">
+      <div className="bg-zinc-100 min-h-screen flex">
         <Header />
         <main className="flex-1 p-6">
           <Routes>

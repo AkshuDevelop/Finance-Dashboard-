@@ -2,46 +2,56 @@ import React from "react";
 import Buttons from "./button";
 import Profile from "./Profile";
 
-const NavIcon = ({ className }) => (
-  <svg
-    className={className}
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M4.18753 11.3788C4.03002 11.759 4 11.9533 4 12V20.0018C4 20.5529 4.44652 21 5 21H8V15C8 13.8954 8.89543 13 10 13H14C15.1046 13 16 13.8954 16 15V21H19C19.5535 21 20 20.5529 20 20.0018V12C20 11.9533 19.97 11.759 19.8125 11.3788C19.6662 11.0256 19.4443 10.5926 19.1547 10.1025C18.5764 9.1238 17.765 7.97999 16.8568 6.89018C15.9465 5.79788 14.9639 4.78969 14.0502 4.06454C13.5935 3.70204 13.1736 3.42608 12.8055 3.2444C12.429 3.05862 12.1641 3 12 3C11.8359 3 11.571 3.05862 11.1945 3.2444C10.8264 3.42608 10.4065 3.70204 9.94978 4.06454C9.03609 4.78969 8.05348 5.79788 7.14322 6.89018C6.23505 7.97999 5.42361 9.1238 4.8453 10.1025C4.55568 10.5926 4.33385 11.0256 4.18753 11.3788ZM10.3094 1.45091C10.8353 1.19138 11.4141 1 12 1C12.5859 1 13.1647 1.19138 13.6906 1.45091C14.2248 1.71454 14.7659 2.07921 15.2935 2.49796C16.3486 3.33531 17.4285 4.45212 18.3932 5.60982C19.3601 6.77001 20.2361 8.0012 20.8766 9.08502C21.1963 9.62614 21.4667 10.1462 21.6602 10.6134C21.8425 11.0535 22 11.5467 22 12V20.0018C22 21.6599 20.6557 23 19 23H16C14.8954 23 14 22.1046 14 21V15H10V21C10 22.1046 9.10457 23 8 23H5C3.34434 23 2 21.6599 2 20.0018V12C2 11.5467 2.15748 11.0535 2.33982 10.6134C2.53334 10.1462 2.80369 9.62614 3.12345 9.08502C3.76389 8.0012 4.63995 6.77001 5.60678 5.60982C6.57152 4.45212 7.65141 3.33531 8.70647 2.49796C9.2341 2.07921 9.77521 1.71454 10.3094 1.45091Z"
-      fill="currentColor"
-    />
-  </svg>
-);
-
 export default function Header() {
   return (
-    <div className="bg-white flex flex-col gap-4 p-4 h-screen w-64 drop-shadow-2xl items-end font-manrope">
-      <Profile
-        ProfileName={"Akshat"}
-        dp={"/public/components/assets/Profile/Pic.jpg"}
-      />
-      <Buttons
-        to="/dashboard"
-        value="Dashboard"
-        icon={<NavIcon className="w-4 h-4" />}
-      />
-      <Buttons
-        to="/transactions"
-        value="Transactions"
-        icon={<NavIcon className="w-4 h-4" />}
-      />
-      <Buttons
-        to="/insights"
-        value="Insights"
-        icon={<NavIcon className="w-4 h-4" />}
-      />
+    <div className="h-screen w-64 bg-zinc-100 border-r border-zinc-200 p-4 flex flex-col gap-4 font-manrope">
+      {/* logo */}
+      <div className="flex items-center gap-2 px-2">
+        <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center">
+          <svg
+            viewBox="0 0 50 50"
+            className="w-4 h-4 text-white fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M43 12h-43v26h50v-26h-7zm5 19.271c-2.328.643-4.086 2.399-4.729 4.729h-36.542c-.644-2.328-2.4-4.086-4.729-4.729v-12.542c2.329-.644 4.085-2.4 4.729-4.729h36.565c.672 2.257 2.449 4.034 4.706 4.706v12.565zm-20.884-4.216c-.23-.14-.116-.269-1.116-.388v2.897l.548-.102c.742-.26 1.114-.745 1.114-1.451 0-.409-.183-.731-.546-.956zm-4.501-4.727c0 .445.203.78.607 1 .155.087.416.184.777.289v-2.741c-.294.069-.552.173-.769.315-.41.272-.615.652-.615 1.137zm2.385-7.328c-4.971 0-9 4.478-9 10 0 5.521 4.029 10 9 10s9-4.479 9-10c0-5.522-4.029-10-9-10zm3.854 15.654c-.679.58-1.854.935-2.854 1.069v1.277h-2v-1.3c-1.044-.142-1.909-.3-2.588-.835-.942-.742-1.412-1.865-1.412-2.865h2.488c.081 0 .239.801.475 1.084.245.291.593.325 1.037.448v-3.405c-1.217-.281-2.065-.584-2.536-.91-.841-.575-1.261-1.476-1.261-2.7 0-1.117.411-2.045 1.234-2.784.628-.565 1.484-.912 2.563-1.046v-1.687h2v1.74c1 .149 1.676.613 2.3 1.076.939.697 1.6 1.184 1.645 3.184h-2.506c-.047-1-.549-1.432-1.172-1.748-.033-.016-.267-.193-.267-.207v3.143l.902.174c.959.226 1.846.528 2.324.905.744.588 1.032 1.437 1.032 2.547.002 1.14-.524 2.086-1.404 2.84z" />
+          </svg>
+        </div>
+
+        <span className="font-semibold text-zinc-800 text-lg">Finance</span>
+      </div>
+      {/* search - not working currently*/}
+      <div className="flex items-center bg-zinc-200 rounded-xl px-3 py-2 text-zinc-500 text-sm">
+        <span className="opacity-70">Search</span>
+        <div className="ml-auto text-xs bg-zinc-300 px-2 py-0.5 rounded-md">
+          /
+        </div>
+      </div>
+
+      {/* navigation */}
+      <div className="flex flex-col gap-1 mt-2">
+        <Buttons
+          to="/dashboard"
+          value="Dashboard"
+          icon="/components/assets/svg/Dashboard.svg"
+        />
+
+        <Buttons
+          to="/transactions"
+          value="Transactions"
+          icon="/components/assets/svg/Transaction.svg"
+        />
+
+        <Buttons
+          to="/insights"
+          value="Insights"
+          icon="/components/assets/svg/Insights.svg"
+        />
+      </div>
+
+      {/* profile */}
+      <div className="mt-auto">
+        <Profile ProfileName="Akshat" dp="/components/assets/Profile/Pic.jpg" />
+      </div>
     </div>
   );
 }

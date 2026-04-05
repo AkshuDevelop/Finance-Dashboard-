@@ -1,5 +1,8 @@
 import React from "react";
 import Summary from "../Components/Summary";
+import LineChartComponent from "./charts/Line Chart";
+import SpendingCategoryPieChart from "./charts/Pie Chart";
+import RecentTransactions from "./Recent Transactions";
 
 export default function Dashboard() {
   return (
@@ -8,12 +11,24 @@ export default function Dashboard() {
         <h1 className="text-4xl font-light text-black">
           Home / <h1 className="font-bold text-black">Dashboard</h1>{" "}
         </h1>
-        <Summary
-          Status="Available Balance"
-          className="w-72 h-64"
-          Amount="19450"
-          Detail="15% More then March"
-        />
+        <div className="flex flex-row gap-2.5 ">
+          <Summary
+            Status="Available Balance"
+            className="w-96 h-80"
+            Amount="19450"
+            Detail="15% More then March"
+          />
+
+          <Summary
+            Status="Total Spent"
+            className="w-96 h-80"
+            Amount="10290"
+            Detail="10% Less then March"
+          />
+          <LineChartComponent />
+        </div>
+        <SpendingCategoryPieChart />
+        <RecentTransactions />
       </div>
     </section>
   );

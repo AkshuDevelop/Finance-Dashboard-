@@ -8,24 +8,45 @@ export default function Profile({ ProfileName, dp, role, setRole }) {
       <div
         onClick={() => setOpen(!open)}
         className="
-          flex items-center gap-3
-          p-2 rounded-xl
+          flex items-center
+
+          justify-center
+          lg:justify-start
+
+          gap-3
+
+          p-2
+          rounded-xl
+
           hover:bg-zinc-200
-          cursor-pointer transition
+          transition
+
+          cursor-pointer
         "
       >
         <img
           src={dp}
           className="
-            w-8 h-8 rounded-full
+            w-8 h-8
+            rounded-full
             object-cover
           "
         />
 
-        <div className="flex flex-col">
+        {/* hide text on mobile */}
+
+        <div
+          className="
+          hidden
+          lg:flex
+
+          flex-col
+        "
+        >
           <span
             className="
-            text-sm font-medium
+            text-sm
+            font-medium
             text-zinc-700
           "
           >
@@ -34,7 +55,8 @@ export default function Profile({ ProfileName, dp, role, setRole }) {
 
           <span
             className="
-            text-xs text-zinc-400
+            text-xs
+            text-zinc-400
           "
           >
             {role}
@@ -45,22 +67,36 @@ export default function Profile({ ProfileName, dp, role, setRole }) {
       {open && (
         <div
           className="
-          absolute bottom-12 left-0
-          bg-white border border-zinc-200
-          rounded-xl shadow-md
-          w-32 p-1
-        "
+            absolute
+
+            bottom-12
+            left-0
+
+            bg-white
+
+            border border-zinc-200
+
+            rounded-xl
+            shadow-md
+
+            w-32
+            p-1
+          "
         >
           <button
             onClick={() => {
               setRole("user");
-
               setOpen(false);
             }}
             className="
               w-full text-left
-              px-3 py-2 text-sm
+
+              px-3 py-2
+
+              text-sm
+
               rounded-lg
+
               hover:bg-zinc-100
             "
           >
@@ -70,13 +106,17 @@ export default function Profile({ ProfileName, dp, role, setRole }) {
           <button
             onClick={() => {
               setRole("admin");
-
               setOpen(false);
             }}
             className="
               w-full text-left
-              px-3 py-2 text-sm
+
+              px-3 py-2
+
+              text-sm
+
               rounded-lg
+
               hover:bg-zinc-100
             "
           >

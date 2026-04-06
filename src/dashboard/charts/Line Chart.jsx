@@ -73,15 +73,59 @@ export default function LineChartComponent() {
   const data = datasets[mode][range];
 
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-sm border border-zinc-200 w-full">
-      {/* top controls */}
-      <div className="flex justify-between items-center mb-4">
-        {/* toggle */}
-        <div className="flex bg-zinc-100 rounded-xl p-1">
+    <div
+      className="
+      bg-white
+
+      rounded-2xl
+
+      p-6
+
+      shadow-sm
+
+      border border-zinc-200
+
+      w-full
+
+      h-[260px]
+      sm:h-[300px]
+      lg:h-[320px]
+    "
+    >
+      <div
+        className="
+        flex
+
+        flex-col
+        sm:flex-row
+
+        gap-3
+
+        sm:items-center
+        sm:justify-between
+
+        mb-4
+      "
+      >
+        <div
+          className="
+          flex
+          bg-zinc-100
+          rounded-xl
+          p-1
+        "
+        >
           <button
             onClick={() => setMode("spend")}
             className={`
-              px-4 py-1.5 text-sm rounded-lg transition-all
+              px-4 py-1.5
+
+              text-sm
+
+              rounded-lg
+
+              transition
+
               ${
                 mode === "spend"
                   ? "bg-white shadow text-zinc-900"
@@ -89,13 +133,20 @@ export default function LineChartComponent() {
               }
             `}
           >
-            Total Spend
+            Spend
           </button>
 
           <button
             onClick={() => setMode("savings")}
             className={`
-              px-4 py-1.5 text-sm rounded-lg transition-all
+              px-4 py-1.5
+
+              text-sm
+
+              rounded-lg
+
+              transition
+
               ${
                 mode === "savings"
                   ? "bg-white shadow text-zinc-900"
@@ -107,31 +158,28 @@ export default function LineChartComponent() {
           </button>
         </div>
 
-        {/* dropdown */}
         <select
           value={range}
           onChange={(e) => setRange(e.target.value)}
           className="
             bg-zinc-100
-            text-zinc-700
+
             text-sm
+
             rounded-lg
+
             px-3 py-1.5
-            outline-none
           "
         >
           <option value="6m">Last 6 months</option>
+
           <option value="1y">Last 1 year</option>
         </select>
       </div>
 
-      {/* chart */}
-      <div className="w-full h-48">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            data={data}
-            margin={{ top: 10, right: 10, left: -10, bottom: 0 }}
-          >
+      <div className="w-full h-[170px] sm:h-[210px] lg:h-[230px]">
+        <ResponsiveContainer>
+          <LineChart data={data}>
             <CartesianGrid
               stroke="#E4E4E7"
               strokeDasharray="3 3"
@@ -153,9 +201,8 @@ export default function LineChartComponent() {
 
             <Tooltip
               contentStyle={{
-                borderRadius: "12px",
+                borderRadius: "10px",
                 border: "1px solid #E4E4E7",
-                fontSize: "13px",
               }}
             />
 

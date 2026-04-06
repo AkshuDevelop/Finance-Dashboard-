@@ -27,64 +27,182 @@ export default function SpendingCategoryPieChart() {
   const total = data.reduce((acc, item) => acc + item.value, 0);
 
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-sm border border-zinc-200 w-full">
-      {/* header */}
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-zinc-800 font-semibold">Spending by Category</h3>
+    <div
+      className="
+      bg-white
 
-        <span className="text-sm bg-zinc-100 px-3 py-1 rounded-lg text-zinc-600">
+      rounded-2xl
+
+      p-6
+
+      shadow-sm
+
+      border border-zinc-200
+
+      w-full
+    "
+    >
+      <div
+        className="
+        flex
+
+        flex-col
+        sm:flex-row
+
+        gap-3
+
+        sm:items-center
+        sm:justify-between
+
+        mb-6
+      "
+      >
+        <h3
+          className="
+          text-zinc-800
+          font-semibold
+        "
+        >
+          Spending by Category
+        </h3>
+
+        <span
+          className="
+          text-sm
+
+          bg-zinc-100
+
+          px-3 py-1
+
+          rounded-lg
+
+          text-zinc-600
+        "
+        >
           This month
         </span>
       </div>
 
-      {/* layout */}
-      <div className="flex items-center gap-6">
-        {/* chart */}
-        <div className="w-80 h-80 relative">
+      <div
+        className="
+        flex
+
+        flex-col
+        lg:flex-row
+
+        items-center
+
+        gap-10
+      "
+      >
+        <div
+          className="
+          relative
+
+          w-[220px]
+          h-[220px]
+
+          sm:w-[260px]
+          sm:h-[260px]
+        "
+        >
           <ResponsiveContainer>
             <PieChart>
               <Pie
                 data={data}
                 dataKey="value"
                 innerRadius={60}
-                outerRadius={80}
+                outerRadius={85}
                 paddingAngle={3}
                 stroke="none"
               >
                 {data.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
+                  <Cell key={index} fill={COLORS[index]} />
                 ))}
               </Pie>
             </PieChart>
           </ResponsiveContainer>
 
-          {/* center value */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-xl font-semibold text-zinc-900">
+          <div
+            className="
+            absolute
+
+            inset-0
+
+            flex
+            flex-col
+
+            items-center
+            justify-center
+          "
+          >
+            <span
+              className="
+              text-xl
+              font-semibold
+              text-zinc-900
+            "
+            >
               ₹{(total / 1000).toFixed(1)}k
             </span>
 
-            <span className="text-xs text-zinc-400">Total Amount</span>
+            <span
+              className="
+              text-xs
+              text-zinc-400
+            "
+            >
+              Total
+            </span>
           </div>
         </div>
 
-        {/* legend */}
-        <div className="flex flex-col gap-2 text-sm w-full">
+        <div
+          className="
+          w-full
+
+          grid
+
+          grid-cols-1
+          sm:grid-cols-2
+
+          gap-3
+        "
+        >
           {data.map((item, index) => (
-            <div key={item.name} className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+            <div
+              key={item.name}
+              className="
+                flex
+
+                justify-between
+
+                bg-zinc-50
+
+                px-3 py-2
+
+                rounded-lg
+              "
+            >
+              <div
+                className="
+                flex items-center gap-2
+              "
+              >
                 <span
-                  className="w-2.5 h-2.5 rounded-full"
-                  style={{ backgroundColor: COLORS[index] }}
+                  className="
+                    w-2.5 h-2.5
+
+                    rounded-full
+                  "
+                  style={{
+                    backgroundColor: COLORS[index],
+                  }}
                 />
 
-                <span className="text-zinc-600">{item.name}</span>
+                {item.name}
               </div>
-
-              <span className="text-zinc-800 font-medium">₹{item.value}</span>
+              ₹{item.value}
             </div>
           ))}
         </div>

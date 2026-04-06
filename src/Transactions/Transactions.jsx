@@ -74,7 +74,6 @@ export default function Transactions({ role }) {
     },
   ];
 
-  /* state */
   const [transactionsData, setTransactionsData] = useState(initialData);
 
   const [editingIndex, setEditingIndex] = useState(null);
@@ -83,9 +82,10 @@ export default function Transactions({ role }) {
 
   const isAdmin = role === "admin";
 
-  /* search/filter/sort */
   const [search, setSearch] = useState("");
+
   const [filter, setFilter] = useState("all");
+
   const [sort, setSort] = useState("date");
 
   const filteredData = transactionsData
@@ -99,8 +99,6 @@ export default function Transactions({ role }) {
 
       return new Date(b.date) - new Date(a.date);
     });
-
-  /* edit handlers */
 
   const startEdit = (txn, index) => {
     setEditingIndex(index);
@@ -127,24 +125,45 @@ export default function Transactions({ role }) {
   };
 
   return (
-    <section className="p-6 gap-6 m-6">
-      <div className="flex flex-col gap-10">
-        <h1 className="text-4xl font-light text-black">
+    <section className="px-4 sm:px-6 py-6">
+      <div className="flex flex-col gap-8">
+        {/* heading */}
+
+        <h1 className="text-3xl lg:text-4xl font-light">
           Home /<span className="font-bold">Transactions</span>
         </h1>
 
-        {/* controls */}
-        <div className="flex gap-3">
+        {/* filters */}
+
+        <div
+          className="
+          flex
+
+          flex-col
+          sm:flex-row
+
+          gap-3
+        "
+        >
           <input
             placeholder="Search transaction..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="
               px-4 py-2
+
               bg-white
+
               border border-zinc-200
-              rounded-xl shadow-sm
-              text-sm w-56
+
+              rounded-xl
+
+              shadow-sm
+
+              text-sm
+
+              w-full
+              sm:w-56
             "
           />
 
@@ -153,9 +172,15 @@ export default function Transactions({ role }) {
             onChange={(e) => setFilter(e.target.value)}
             className="
               px-4 py-2
-              bg-white border
-              border-zinc-200
-              rounded-xl shadow-sm
+
+              bg-white
+
+              border border-zinc-200
+
+              rounded-xl
+
+              shadow-sm
+
               text-sm
             "
           >
@@ -171,9 +196,15 @@ export default function Transactions({ role }) {
             onChange={(e) => setSort(e.target.value)}
             className="
               px-4 py-2
-              bg-white border
-              border-zinc-200
-              rounded-xl shadow-sm
+
+              bg-white
+
+              border border-zinc-200
+
+              rounded-xl
+
+              shadow-sm
+
               text-sm
             "
           >
@@ -183,23 +214,39 @@ export default function Transactions({ role }) {
           </select>
         </div>
 
-        {/* table */}
+        {/* DESKTOP TABLE */}
+
         <div
           className="
-          bg-white border
-          border-zinc-200
-          rounded-2xl shadow-sm
+          hidden
+          md:block
+
+          bg-white
+
+          border border-zinc-200
+
+          rounded-2xl
+
+          shadow-sm
+
           overflow-hidden
         "
         >
-          {/* header */}
           <div
             className="
             grid grid-cols-5
+
             px-8 py-4
-            text-sm text-zinc-500
+
+            text-sm
+
+            text-zinc-500
+
             border-b border-zinc-200
-            bg-zinc-50 font-medium
+
+            bg-zinc-50
+
+            font-medium
           "
           >
             <span>Transaction</span>
@@ -210,11 +257,10 @@ export default function Transactions({ role }) {
 
             <span className="text-right">Amount</span>
 
-            <span></span>
+            <span />
           </div>
 
-          {/* rows */}
-          <div className="divide-y divide-zinc-200">
+          <div className="divide-y">
             {filteredData.map((txn, index) => {
               const isEditing = editingIndex === index;
 
@@ -223,52 +269,52 @@ export default function Transactions({ role }) {
                   key={index}
                   className="
                     grid grid-cols-5
-                    px-8 py-5 items-center
-                    hover:bg-zinc-50 transition
+
+                    px-8 py-5
+
+                    items-center
+
+                    hover:bg-zinc-50
                   "
                 >
                   {/* title */}
+
                   {isEditing ? (
                     <input
                       value={editedTxn.title}
                       onChange={(e) => handleChange("title", e.target.value)}
                       className="
                         bg-zinc-100
-                        px-2 py-1 rounded-lg
+
+                        px-2 py-1
+
+                        rounded-lg
                       "
                     />
                   ) : (
-                    <span
-                      className="
-                      text-[15px]
-                      font-medium
-                    "
-                    >
-                      {txn.title}
-                    </span>
+                    <span className="font-medium">{txn.title}</span>
                   )}
 
                   {/* category */}
+
                   {isEditing ? (
                     <input
                       value={editedTxn.category}
                       onChange={(e) => handleChange("category", e.target.value)}
                       className="
                         bg-zinc-100
-                        px-2 py-1 rounded-lg
+
+                        px-2 py-1
+
+                        rounded-lg
                       "
                     />
                   ) : (
-                    <span
-                      className="
-                      text-zinc-600
-                    "
-                    >
-                      {txn.category}
-                    </span>
+                    <span className="text-zinc-600">{txn.category}</span>
                   )}
 
                   {/* date */}
+
                   {isEditing ? (
                     <input
                       type="date"
@@ -276,20 +322,18 @@ export default function Transactions({ role }) {
                       onChange={(e) => handleChange("date", e.target.value)}
                       className="
                         bg-zinc-100
-                        px-2 py-1 rounded-lg
+
+                        px-2 py-1
+
+                        rounded-lg
                       "
                     />
                   ) : (
-                    <span
-                      className="
-                      text-zinc-500
-                    "
-                    >
-                      {txn.date}
-                    </span>
+                    <span className="text-zinc-500">{txn.date}</span>
                   )}
 
                   {/* amount */}
+
                   {isEditing ? (
                     <input
                       type="number"
@@ -299,14 +343,19 @@ export default function Transactions({ role }) {
                       }
                       className="
                         bg-zinc-100
-                        px-2 py-1 rounded-lg
+
+                        px-2 py-1
+
+                        rounded-lg
+
                         text-right
                       "
                     />
                   ) : (
                     <span
                       className={`
-                        text-right font-semibold
+                        text-right
+                        font-semibold
 
                         ${
                           txn.type === "income"
@@ -319,40 +368,30 @@ export default function Transactions({ role }) {
                     </span>
                   )}
 
-                  {/* edit button */}
-                  {/* edit button */}
+                  {/* edit */}
+
                   <div className="flex justify-end">
                     {isAdmin && !isEditing && (
                       <button
                         onClick={() => startEdit(txn, index)}
                         className="
-                          bg-white
-                          border border-zinc-200
+                          border
+
                           rounded-lg
+
                           p-1.5
+
                           hover:bg-zinc-100
-                          transition
                         "
                       >
-                        {/* pencil icon */}
-
                         <svg
                           viewBox="0 0 24 24"
-                          className="w-4 h-4 stroke-zinc-900"
+                          className="w-4 h-4"
                           fill="none"
+                          stroke="black"
                           strokeWidth="2"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="
-                              M16.862 3.487
-                              a2.25 2.25 0 113.182 3.182
-                              L7.5 19.213
-                              3 21l1.787-4.5
-                              12.075-13.013
-                            "
-                          />
+                          <path d="M16.862 3.487a2.25 2.25 0 113.182 3.182L7.5 19.213 3 21l1.787-4.5L16.862 3.487z" />
                         </svg>
                       </button>
                     )}
@@ -361,27 +400,23 @@ export default function Transactions({ role }) {
                       <button
                         onClick={saveEdit}
                         className="
-                          bg-white
-                          border border-zinc-200
+                          border
+
                           rounded-lg
+
                           p-1.5
+
                           hover:bg-zinc-100
-                          transition
                         "
                       >
-                        {/* check icon */}
-
                         <svg
                           viewBox="0 0 24 24"
-                          className="w-4 h-4 stroke-zinc-900"
+                          className="w-4 h-4"
                           fill="none"
+                          stroke="black"
                           strokeWidth="2"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
+                          <path d="M5 13l4 4L19 7" />
                         </svg>
                       </button>
                     )}
@@ -390,6 +425,183 @@ export default function Transactions({ role }) {
               );
             })}
           </div>
+        </div>
+
+        {/* MOBILE CARDS */}
+
+        <div
+          className="
+          flex flex-col
+
+          gap-3
+
+          md:hidden
+        "
+        >
+          {filteredData.map((txn, index) => {
+            const isEditing = editingIndex === index;
+
+            return (
+              <div
+                key={index}
+                className="
+                    bg-white
+
+                    border border-zinc-200
+
+                    rounded-xl
+
+                    p-4
+
+                    shadow-sm
+                  "
+              >
+                <div
+                  className="
+                    flex
+
+                    justify-between
+
+                    items-start
+
+                    mb-2
+                  "
+                >
+                  <div>
+                    <div
+                      className="
+                        font-medium
+                      "
+                    >
+                      {isEditing ? (
+                        <input
+                          value={editedTxn.title}
+                          onChange={(e) =>
+                            handleChange("title", e.target.value)
+                          }
+                          className="
+                              bg-zinc-100
+
+                              px-2 py-1
+
+                              rounded-lg
+                            "
+                        />
+                      ) : (
+                        txn.title
+                      )}
+                    </div>
+
+                    <div
+                      className="
+                        text-xs
+                        text-zinc-500
+                      "
+                    >
+                      {isEditing ? (
+                        <input
+                          value={editedTxn.category}
+                          onChange={(e) =>
+                            handleChange("category", e.target.value)
+                          }
+                          className="
+                              bg-zinc-100
+
+                              px-2 py-1
+
+                              rounded-lg
+                            "
+                        />
+                      ) : (
+                        txn.category
+                      )}
+                    </div>
+                  </div>
+
+                  <div
+                    className="
+                      text-right
+                    "
+                  >
+                    <div
+                      className={`
+                          font-semibold
+
+                          ${
+                            txn.type === "income"
+                              ? "text-green-600"
+                              : "text-red-500"
+                          }
+                        `}
+                    >
+                      {txn.type === "income" ? "+" : "-"}₹
+                      {isEditing ? editedTxn.amount : txn.amount}
+                    </div>
+
+                    <div
+                      className="
+                        text-xs
+                        text-zinc-400
+                      "
+                    >
+                      {isEditing ? (
+                        <input
+                          type="date"
+                          value={editedTxn.date}
+                          onChange={(e) => handleChange("date", e.target.value)}
+                          className="
+                              bg-zinc-100
+
+                              px-2 py-1
+
+                              rounded-lg
+                            "
+                        />
+                      ) : (
+                        txn.date
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {isAdmin && (
+                  <div className="flex justify-end">
+                    {!isEditing ? (
+                      <button
+                        onClick={() => startEdit(txn, index)}
+                        className="
+                            border
+
+                            rounded-lg
+
+                            p-1.5
+
+                            hover:bg-zinc-100
+                          "
+                      >
+                        ✎
+                      </button>
+                    ) : (
+                      <button
+                        onClick={saveEdit}
+                        className="
+                            border
+
+                            rounded-lg
+
+                            p-1.5
+
+                            hover:bg-zinc-100
+                          "
+                      >
+                        ✓
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

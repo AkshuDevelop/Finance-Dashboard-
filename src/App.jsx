@@ -9,6 +9,7 @@ import Insights from "./insights/insights";
 export default function App() {
   /* global role state */
   const [role, setRole] = useState("user");
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
     <BrowserRouter>

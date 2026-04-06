@@ -2,7 +2,7 @@ import React from "react";
 import Buttons from "./button";
 import Profile from "./Profile";
 
-export default function Header() {
+export default function Header({ role, setRole }) {
   return (
     <div
       className="
@@ -63,7 +63,12 @@ export default function Header() {
 
       {/* profile */}
       <div className="mt-auto">
-        <Profile ProfileName="Akshat" dp="/components/assets/Profile/Pic.jpg" />
+        <Profile
+          ProfileName="Akshat"
+          dp="/components/assets/Profile/Pic.png"
+          role={role}
+          setRole={setRole}
+        />
       </div>
     </div>
   );
